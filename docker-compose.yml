@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  webcontainer:
+    image: guptaanshul752/docker-challenge:solved
+    ports:
+      - "80:80"
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    depends_on:
+      - metricscontainer
+
+  metricscontainer:
+    build: ./metrics_scraper
+    ports:
+      - "5000:5000"
